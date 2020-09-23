@@ -27,7 +27,9 @@ const TambahPeserta = () => {
             name="nomor"
           />
           <Gap height={20} />
-          <Button title="Submit" type="submit" />
+          <div className="btn-submit">
+            <Button title="Submit" type="submit" />
+          </div>
         </form>
       </div>
     </div>

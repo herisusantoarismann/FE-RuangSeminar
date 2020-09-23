@@ -5,8 +5,18 @@
   align-items: center;
   margin: auto;
   .input-peserta {
+    h2 {
+      text-align: center;
+    }
+
     width: 400px;
     margin: auto;
     flex-direction: column;
+
+    .btn-submit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }

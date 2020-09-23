@@ -32,7 +32,9 @@ const TambahSeminar = () => {
           name="durasi_menit"
         />
         <Gap height={20} />
-        <Button title="Submit" />
+        <div className="btn-submit">
+          <Button title="Submit" />
+        </div>
       </div>
     </div>
   );

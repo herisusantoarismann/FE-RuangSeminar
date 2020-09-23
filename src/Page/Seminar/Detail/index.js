@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Button, Gap } from "../../../Component";
+import { Button, Gap, Loading } from "../../../Component";
 import "./style.scss";
 
 class Detail extends Component {
@@ -41,7 +41,11 @@ class Detail extends Component {
     if (error) {
       return <div>Error in loading</div>;
     } else if (!isLoaded) {
-      return <div>Loading ...</div>;
+      return (
+        <div>
+          <Loading />
+        </div>
+      );
     } else {
       return (
         <Fragment>
