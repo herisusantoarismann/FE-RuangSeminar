@@ -1,9 +1,10 @@
-.input-seminar-wrapper {
+.input-peserta-wrapper {
+  width: 700px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: auto;
-  .input-seminar {
+  .input-peserta {
     margin: auto;
     flex-direction: column;
   }
