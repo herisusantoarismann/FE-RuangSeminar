@@ -1,10 +1,15 @@
 .container {
-  width: 850px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   padding: 20px 150px;
+  overflow-x: auto;
 
   .title {
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
   }
   .table {

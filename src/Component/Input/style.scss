@@ -15,4 +15,8 @@
     outline: none;
     width: 100%;
   }
+
+  .input:focus::placeholder {
+    color: transparent;
+  }
 }

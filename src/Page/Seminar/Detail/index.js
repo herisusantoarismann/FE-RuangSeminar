@@ -69,12 +69,12 @@ class Detail extends Component {
               <div className="btn-detail">
                 <Button
                   title="Hapus Seminar"
-                  buttonStyle="btn--success--solid"
+                  buttonStyle="btn--danger--solid"
                 />
                 <Gap width={20} />
                 <Button
                   title="Tambah Peserta"
-                  buttonStyle="btn--danger--solid"
+                  buttonStyle="btn--primary--solid"
                 />
               </div>
               <Gap height={50} />

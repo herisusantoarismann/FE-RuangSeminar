@@ -48,7 +48,7 @@ class Home extends Component {
           <div className="container">
             <div className="title">
               <h2>Seminar</h2>
-              <Gap width={20} />
+              <Gap width={700} />
               <Button title="Tambah" buttonStyle="btn--primary--solid" />
             </div>
             <div className="table">
