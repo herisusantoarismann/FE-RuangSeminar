@@ -52,7 +52,7 @@ class Home extends Component {
               <Button title="Tambah" buttonStyle="btn--primary--solid" />
             </div>
             <div className="table">
-              <table>
+              <table class="table table-striped table-hover">
                 <thead>
                   <tr>
                     <td>ID</td>
