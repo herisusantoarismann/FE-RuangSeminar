@@ -1,8 +1,21 @@
-table {
+.detail-seminar {
   border-collapse: collapse;
   td,
   th {
-    padding: 8px;
+    padding: 12px;
+  }
+
+  th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
+
+.table-detail {
+  border-collapse: collapse;
+  td,
+  th {
+    padding: 20px;
   }
 
   th {

@@ -18,7 +18,7 @@
       td,
       th {
         border: 1px solid #ddd;
-        padding: 8px;
+        padding: 25px;
       }
 
       tr:nth-child(even) {
@@ -39,6 +39,7 @@
 
       .btn-action {
         display: flex;
+        padding: 20px;
       }
     }
   }

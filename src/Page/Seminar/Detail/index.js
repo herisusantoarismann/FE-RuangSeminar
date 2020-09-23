@@ -13,10 +13,11 @@ class Detail extends Component {
   };
 
   fetchUsers() {
-    fetch("http://universities.hipolabs.com/search?name=middle")
+    fetch("http://localhost:5000/seminars/EXsGozqKL")
       .then((response) => response.json())
       .then(
         (result) => {
+          console.log(result.peserta);
           this.setState({
             isLoaded: true,
             items: result,
@@ -52,21 +53,31 @@ class Detail extends Component {
           <div className="container">
             <div className="detail">
               <h3>Detail Seminar</h3>
-              <table>
+              <table className="detail-seminar">
                 <tr>
                   <td>ID</td>
                   <td>:</td>
-                  <td>Nama</td>
+                  <td>{items._id}</td>
                 </tr>
                 <tr>
                   <td>Nama</td>
                   <td>:</td>
-                  <td>Nama</td>
+                  <td>{items.nama_seminar}</td>
                 </tr>
                 <tr>
                   <td>Pemateri</td>
                   <td>:</td>
-                  <td>Nama</td>
+                  <td>{items.pemateri}</td>
+                </tr>
+                <tr>
+                  <td>Tanggal</td>
+                  <td>:</td>
+                  <td>{items.tanggal}</td>
+                </tr>
+                <tr>
+                  <td>Durasi</td>
+                  <td>:</td>
+                  <td>{items.durasi_menit} Menit</td>
                 </tr>
               </table>
               <Gap height={20} />
@@ -85,7 +96,7 @@ class Detail extends Component {
             </div>
             <div className="table">
               <h3>Daftar Peserta</h3>
-              <table>
+              <table className="table-detail">
                 <thead>
                   <tr>
                     <td>ID</td>
@@ -96,12 +107,12 @@ class Detail extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {items.map((item, idx) => (
+                  {/* {items.map((item, idx) => (
                     <tr key={idx}>
-                      <td>{idx + 1}</td>
-                      <td>{item.name}</td>
-                      <td>{item.country}</td>
-                      <td>{item.country}</td>
+                      <td>{item.id}</td>
+                      <td>{item.nama}</td>
+                      <td>{item.email}</td>
+                      <td>{item.nomor}</td>
                       <td className="btn-action">
                         <Button
                           title="Lihat"
@@ -114,7 +125,7 @@ class Detail extends Component {
                         />
                       </td>
                     </tr>
-                  ))}
+                  ))} */}
                 </tbody>
               </table>
             </div>

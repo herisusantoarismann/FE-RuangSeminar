@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Button, Gap } from "../../../Component";
+import { Button, Gap, Loading, Modal } from "../../../Component";
 import "./style.scss";
 
 class Home extends Component {
@@ -13,7 +13,7 @@ class Home extends Component {
   };
 
   fetchUsers() {
-    fetch("http://universities.hipolabs.com/search?name=middle")
+    fetch("http://localhost:5000/seminars")
       .then((response) => response.json())
       .then(
         (result) => {
@@ -32,6 +32,28 @@ class Home extends Component {
       );
   }
 
+  deleteData(id) {
+    alert(id);
+    const requestOptions = {
+      method: "DELETE",
+    };
+    fetch("http://localhost:5000/seminars/" + id, requestOptions)
+      .then((response) => {
+        return response.json();
+      })
+      .then((result) => {
+        alert("Berhasil");
+      });
+  }
+
+  showModal = () => {
+    this.setState({ show: true });
+  };
+
+  hideModal = () => {
+    this.setState({ show: false });
+  };
+
   componentDidMount() {
     this.fetchUsers();
   }
@@ -41,7 +63,11 @@ class Home extends Component {
     if (error) {
       return <div>Error in loading</div>;
     } else if (!isLoaded) {
-      return <div>Loading ...</div>;
+      return (
+        <div>
+          <Loading />
+        </div>
+      );
     } else {
       return (
         <Fragment>
@@ -52,7 +78,7 @@ class Home extends Component {
               <Button title="Tambah" buttonStyle="btn--primary--solid" />
             </div>
             <div className="table">
-              <table class="table table-striped table-hover">
+              <table className="table table-striped table-hover">
                 <thead>
                   <tr>
                     <td>ID</td>
@@ -66,21 +92,32 @@ class Home extends Component {
                 <tbody>
                   {items.map((item, idx) => (
                     <tr key={idx}>
-                      <td>{idx + 1}</td>
-                      <td>{item.name}</td>
-                      <td>{item.country}</td>
-                      <td>{item.country}</td>
-                      <td>{item.country} Menit</td>
+                      <td>{item._id}</td>
+                      <td>{item.nama_seminar}</td>
+                      <td>{item.pemateri}</td>
+                      <td>{item.tanggal}</td>
+                      <td>{item.durasi_menit} Menit</td>
                       <td className="btn-action">
-                        <Button
-                          title="Lihat"
-                          buttonStyle="btn--success--solid"
-                        />
+                        <Modal
+                          show={this.state.show}
+                          handleClose={this.hideModal}
+                        >
+                          <p>Modal</p>
+                          <p>Data</p>
+                        </Modal>
+                        <p>
+                          <Button
+                            title="Lihat"
+                            buttonStyle="btn--success--solid"
+                          />
+                        </p>
                         <Gap width={20} />
-                        <Button
-                          title="Hapus"
-                          buttonStyle="btn--danger--solid"
-                        />
+                        <p onClick={() => this.deleteData(item._id)}>
+                          <Button
+                            title="Hapus"
+                            buttonStyle="btn--danger--solid"
+                          />
+                        </p>
                       </td>
                     </tr>
                   ))}
