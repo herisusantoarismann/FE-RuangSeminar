@@ -1,3 +1,15 @@
+table {
+  border-collapse: collapse;
+  td,
+  th {
+    padding: 8px;
+  }
+
+  th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
 .btn-detail {
   display: flex;
 }

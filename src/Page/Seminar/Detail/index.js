@@ -48,22 +48,46 @@ class Detail extends Component {
           <div className="container">
             <div className="detail">
               <h3>Detail Seminar</h3>
-              <p>Heri</p>
-              <p>Heri</p>
-              <p>Heri</p>
+              <table>
+                <tr>
+                  <td>ID</td>
+                  <td>:</td>
+                  <td>Nama</td>
+                </tr>
+                <tr>
+                  <td>Nama</td>
+                  <td>:</td>
+                  <td>Nama</td>
+                </tr>
+                <tr>
+                  <td>Pemateri</td>
+                  <td>:</td>
+                  <td>Nama</td>
+                </tr>
+              </table>
+              <Gap height={20} />
               <div className="btn-detail">
-                <Button title="Tambah" buttonStyle="btn--success--solid" />
+                <Button
+                  title="Hapus Seminar"
+                  buttonStyle="btn--success--solid"
+                />
                 <Gap width={20} />
-                <Button title="Tambah" buttonStyle="btn--danger--solid" />
+                <Button
+                  title="Tambah Peserta"
+                  buttonStyle="btn--danger--solid"
+                />
               </div>
+              <Gap height={50} />
             </div>
             <div className="table">
+              <h3>Daftar Peserta</h3>
               <table>
                 <thead>
                   <tr>
                     <td>ID</td>
                     <td>Nama</td>
-                    <td>Pemateri</td>
+                    <td>Email</td>
+                    <td>Nomor</td>
                     <td>Action</td>
                   </tr>
                 </thead>
@@ -73,14 +97,15 @@ class Detail extends Component {
                       <td>{idx + 1}</td>
                       <td>{item.name}</td>
                       <td>{item.country}</td>
+                      <td>{item.country}</td>
                       <td className="btn-action">
                         <Button
-                          title="Tambah"
+                          title="Lihat"
                           buttonStyle="btn--success--solid"
                         />
                         <Gap width={20} />
                         <Button
-                          title="Tambah"
+                          title="Hapus"
                           buttonStyle="btn--danger--solid"
                         />
                       </td>

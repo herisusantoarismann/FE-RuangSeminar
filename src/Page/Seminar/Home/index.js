@@ -58,6 +58,8 @@ class Home extends Component {
                     <td>ID</td>
                     <td>Nama</td>
                     <td>Pemateri</td>
+                    <td>Tanggal</td>
+                    <td>Durasi</td>
                     <td>Action</td>
                   </tr>
                 </thead>
@@ -67,6 +69,8 @@ class Home extends Component {
                       <td>{idx + 1}</td>
                       <td>{item.name}</td>
                       <td>{item.country}</td>
+                      <td>{item.country}</td>
+                      <td>{item.country} Menit</td>
                       <td className="btn-action">
                         <Button
                           title="Tambah"
