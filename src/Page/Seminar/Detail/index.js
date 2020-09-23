@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from "react";
+import { Button, Gap } from "../../../Component";
+import "./style.scss";
 
 class Detail extends Component {
   constructor(props) {
@@ -49,11 +51,13 @@ class Detail extends Component {
               <p>Heri</p>
               <p>Heri</p>
               <p>Heri</p>
-              <button>Hapus</button>
-              <button>Tambah</button>
+              <div className="btn-detail">
+                <Button title="Tambah" buttonStyle="btn--success--solid" />
+                <Gap width={20} />
+                <Button title="Tambah" buttonStyle="btn--danger--solid" />
+              </div>
             </div>
             <div className="table">
-              <h3>Daftar Peserta</h3>
               <table>
                 <thead>
                   <tr>
@@ -69,9 +73,16 @@ class Detail extends Component {
                       <td>{idx + 1}</td>
                       <td>{item.name}</td>
                       <td>{item.country}</td>
-                      <td>
-                        <button>Lihat</button>
-                        <button>Delete</button>
+                      <td className="btn-action">
+                        <Button
+                          title="Tambah"
+                          buttonStyle="btn--success--solid"
+                        />
+                        <Gap width={20} />
+                        <Button
+                          title="Tambah"
+                          buttonStyle="btn--danger--solid"
+                        />
                       </td>
                     </tr>
                   ))}

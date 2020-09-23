@@ -1,5 +1,5 @@
 import React from "react";
-import { Input } from "../../../../Component";
+import { Button, Gap, Input } from "../../../../Component";
 
 const TambahPeserta = () => {
   return (
@@ -29,6 +29,8 @@ const TambahPeserta = () => {
         type="text"
         name="durasi_menit"
       />
+      <Gap height={20} />
+      <Button title="Submit" />
     </div>
   );
 };
