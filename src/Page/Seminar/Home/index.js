@@ -73,12 +73,12 @@ class Home extends Component {
                       <td>{item.country} Menit</td>
                       <td className="btn-action">
                         <Button
-                          title="Tambah"
+                          title="Lihat"
                           buttonStyle="btn--success--solid"
                         />
                         <Gap width={20} />
                         <Button
-                          title="Tambah"
+                          title="Hapus"
                           buttonStyle="btn--danger--solid"
                         />
                       </td>
