@@ -10,7 +10,11 @@ const STYLE = [
 
 const Button = ({ title, buttonStyle, ...rest }) => {
   const checkButtonStyle = STYLE.includes(buttonStyle) ? buttonStyle : STYLE[0];
-  return <button className={`btn ${checkButtonStyle}`}>{title}</button>;
+  return (
+    <button className={`btn ${checkButtonStyle}`} {...rest}>
+      {title}
+    </button>
+  );
 };
 
 export default Button;

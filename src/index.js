@@ -5,7 +5,7 @@ import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Detail />
+    <TambahPeserta />
   </React.StrictMode>,
   document.getElementById("root")
 );
