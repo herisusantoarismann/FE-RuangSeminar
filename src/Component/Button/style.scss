@@ -1,0 +1,38 @@
+:root {
+  --primary: #0275d8;
+  --warning: #ffd028;
+  --danger: #d9534f;
+  --white: #fdfdfd;
+  --dark: #181717;
+  --success: #5cb85c;
+}
+
+.btn {
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.btn--primary--solid {
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+}
+
+.btn--warning--solid {
+  background: var(--warning);
+  color: var(--dark);
+  border: none;
+}
+
+.btn--danger--solid {
+  background: var(--danger);
+  color: var(--white);
+  border: none;
+}
+
+.btn--success--solid {
+  background: var(--success);
+  color: var(--white);
+  border: none;
+}
