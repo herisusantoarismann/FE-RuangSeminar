@@ -1,22 +1,41 @@
-.input-peserta-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  .input-peserta {
-    h2 {
-      text-align: center;
-    }
+// .input-peserta-wrapper {
+//   width: 100%;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin: auto;
+//   .input-peserta {
+//     h2 {
+//       text-align: center;
+//     }
 
-    width: 400px;
-    margin: auto;
-    flex-direction: column;
+//     width: 400px;
+//     margin: auto;
+//     flex-direction: column;
 
-    .btn-submit {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+//     .btn-submit {
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//     }
+//   }
+// }
+
+.input-peserta {
+  width: 350px;
+  margin: 50px auto;
+  h2 {
+    text-align: center;
+  }
+  input:focus::placeholder {
+    opacity: 0;
+  }
+  .btn-submit {
+    display: flex;
+    justify-content: center;
+    button {
+      margin-top: 20px;
+      padding: 5px;
     }
   }
 }

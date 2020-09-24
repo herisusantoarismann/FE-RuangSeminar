@@ -1,21 +1,29 @@
-.input-seminar-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+// .input-seminar-wrapper {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin: auto;
+//   .input-seminar {
+//     h2 {
+//       text-align: center;
+//     }
+
+//     width: 400px;
+//     margin: auto;
+//     flex-direction: column;
+
+//     .btn-submit {
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//     }
+//   }
+// }
+
+.input-seminar {
+  width: 300px;
   margin: auto;
-  .input-seminar {
-    h2 {
-      text-align: center;
-    }
-
-    width: 400px;
-    margin: auto;
-    flex-direction: column;
-
-    .btn-submit {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+  h2 {
+    text-align: center;
   }
 }

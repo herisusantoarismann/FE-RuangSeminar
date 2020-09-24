@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-import { Button, Gap, Loading, Modal } from "../../../Component";
+// import { Button, Gap, Loading, Modal } from "../../../Component";
+import Loading from "../../../Component/Loading/index";
 import "./style.scss";
 
 class Detail extends Component {
@@ -182,8 +183,42 @@ class Detail extends Component {
                   </tr>
                 </tbody>
               </table>
+              <div className="btn-detail">
+                <button class="btn btn-success">Edit Seminar</button>
+                <button class="btn btn-error">Hapus Seminar</button>
+                <Link to={`${items._id}/peserta`}>
+                  <button class="btn btn-primary">Tambah Peserta</button>
+                </Link>
+              </div>
             </div>
-            <div className="peserta"></div>
+            <div className="peserta">
+              <h2>Daftar Peserta</h2>
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Nomor</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {items.peserta.map((item, idx) => (
+                    <tr key={idx}>
+                      <td>{item._id}</td>
+                      <td>{item.nama}</td>
+                      <td>{item.email}</td>
+                      <td>{item.nomor}</td>
+                      <td className="btn-action">
+                        <button className="btn btn-success">Lihat</button>
+                        <button className="btn btn-error">Hapus</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </Fragment>
       );

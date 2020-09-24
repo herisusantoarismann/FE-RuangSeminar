@@ -60,43 +60,47 @@ class TambahSeminar extends Component {
 
   render() {
     return (
-      <div className="input-seminar-wrapper">
-        <div className="input-seminar">
-          <h2>Tambah Seminar</h2>
-          <form onSubmit={this.HandleSubmit}>
-            <a onChange={this.HandleNamaChange}>
-              <Input
-                label="Nama"
-                placeholder="Masukkan Nama"
-                type="text"
-                name="nama_seminar"
-              />
-            </a>
-            <a onChange={this.HandlePemateriChange}>
-              <Input
-                label="Pemateri"
-                placeholder="Masukkan Pemateri"
-                type="text"
-                name="pemateri"
-              />
-            </a>
-            <a onChange={this.HandleTanggalChange}>
-              <Input label="Tanggal" type="date" name="tanggal" />
-            </a>
-            <a onChange={this.HandleDurasiChange}>
-              <Input
-                label="Durasi"
-                placeholder="Masukkan Durasi (menit)"
-                type="text"
-                name="durasi_menit"
-              />
-            </a>
-            <Gap height={20} />
-            <div className="btn-submit">
-              <Button title="Submit" />
-            </div>
-          </form>
-        </div>
+      // <div className="input-seminar-wrapper">
+      //   <div className="input-seminar">
+      //     <h2>Tambah Seminar</h2>
+      //     <form onSubmit={this.HandleSubmit}>
+      //       <a onChange={this.HandleNamaChange}>
+      //         <Input
+      //           label="Nama"
+      //           placeholder="Masukkan Nama"
+      //           type="text"
+      //           name="nama_seminar"
+      //         />
+      //       </a>
+      //       <a onChange={this.HandlePemateriChange}>
+      //         <Input
+      //           label="Pemateri"
+      //           placeholder="Masukkan Pemateri"
+      //           type="text"
+      //           name="pemateri"
+      //         />
+      //       </a>
+      //       <a onChange={this.HandleTanggalChange}>
+      //         <Input label="Tanggal" type="date" name="tanggal" />
+      //       </a>
+      //       <a onChange={this.HandleDurasiChange}>
+      //         <Input
+      //           label="Durasi"
+      //           placeholder="Masukkan Durasi (menit)"
+      //           type="text"
+      //           name="durasi_menit"
+      //         />
+      //       </a>
+      //       <Gap height={20} />
+      //       <div className="btn-submit">
+      //         <Button title="Submit" />
+      //       </div>
+      //     </form>
+      //   </div>
+      // </div>
+
+      <div className="input-seminar">
+        <h2>Tambah Seminar</h2>
       </div>
     );
   }

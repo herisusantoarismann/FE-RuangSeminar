@@ -1,29 +1,33 @@
-.detail-seminar {
-  border-collapse: collapse;
-  td,
-  th {
-    padding: 12px;
-  }
+// .detail-seminar {
+//   border-collapse: collapse;
+//   td,
+//   th {
+//     padding: 12px;
+//   }
 
-  th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-  }
-}
+//   th {
+//     padding-top: 12px;
+//     padding-bottom: 12px;
+//   }
+// }
 
-.table-detail {
-  border-collapse: collapse;
-  td,
-  th {
-    padding: 20px;
-  }
+// .table-detail {
+//   border-collapse: collapse;
+//   td,
+//   th {
+//     padding: 20px;
+//   }
 
-  th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-  }
-}
+//   th {
+//     padding-top: 12px;
+//     padding-bottom: 12px;
+//   }
+// }
 
 .btn-detail {
   display: flex;
+  button {
+    padding: 5px;
+    margin: 10px 10px;
+  }
 }
