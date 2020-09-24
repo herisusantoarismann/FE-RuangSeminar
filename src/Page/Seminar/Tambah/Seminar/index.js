@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Input, Gap, Button } from "../../../../Component";
+import moment from "moment";
+import "moment/locale/id";
 import "./style.scss";
 
 class TambahSeminar extends Component {
@@ -11,11 +13,9 @@ class TambahSeminar extends Component {
   HandleSubmit(e) {
     e.preventDefault();
     const data = new FormData(e.target);
-    let date = data.get("tanggal");
-    let formatted_date =
-      date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
-    console.log(formatted_date);
-    console.log(data.get("tanggal"));
+    moment.locale("id");
+    const date = moment(`${data.get("tanggal")}`, "YYYY-MM-DD").format("LL");
+    console.log(date);
   }
 
   render() {
