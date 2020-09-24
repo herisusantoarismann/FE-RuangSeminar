@@ -5,13 +5,39 @@ import "./style.scss";
 class TambahPeserta extends Component {
   constructor() {
     super();
+    this.state = {
+      nama: "",
+      email: "",
+      nomor: "",
+    };
+
     this.HandleSubmit = this.HandleSubmit.bind(this);
   }
 
+  HandleNamaChange = (e) => {
+    this.setState({ nama: e.target.value });
+  };
+
+  HandleEmailChange = (e) => {
+    this.setState({ email: e.target.value });
+  };
+
+  HandleNomorChange = (e) => {
+    this.setState({ nomor: e.target.value });
+  };
+
   HandleSubmit(e) {
     e.preventDefault();
-    const data = new FormData(e.target);
-    console.log(data.get("nama"));
+
+    fetch("http://localhost:5000/seminars/9ZZ_QypWG/peserta", {
+      method: "POST",
+      body: JSON.stringify({
+        nama: this.state.nama,
+        email: this.state.email,
+        nomor: this.state.nomor,
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
   }
 
   render() {
@@ -20,24 +46,30 @@ class TambahPeserta extends Component {
         <div className="input-peserta">
           <form onSubmit={this.HandleSubmit}>
             <h2>Tambah Peserta</h2>
-            <Input
-              label="Nama"
-              placeholder="Masukkan Nama "
-              type="text"
-              name="nama"
-            />
-            <Input
-              label="Email"
-              placeholder="Masukkan Email"
-              type="email"
-              name="email"
-            />
-            <Input
-              label="Pemateri"
-              placeholder="Masukkan Nomor"
-              type="text"
-              name="nomor"
-            />
+            <div onChange={this.HandleNamaChange}>
+              <Input
+                label="Nama"
+                placeholder="Masukkan Nama "
+                type="text"
+                name="nama"
+              />
+            </div>
+            <div onChange={this.HandleEmailChange}>
+              <Input
+                label="Email"
+                placeholder="Masukkan Email"
+                type="email"
+                name="email"
+              />
+            </div>
+            <div onChange={this.HandleNomorChange}>
+              <Input
+                label="Pemateri"
+                placeholder="Masukkan Nomor"
+                type="text"
+                name="nomor"
+              />
+            </div>
             <Gap height={20} />
             <div className="btn-submit">
               <Button title="Submit" type="submit" />

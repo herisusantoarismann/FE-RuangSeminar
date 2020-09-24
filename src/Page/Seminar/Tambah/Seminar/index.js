@@ -64,33 +64,33 @@ class TambahSeminar extends Component {
         <div className="input-seminar">
           <h2>Tambah Seminar</h2>
           <form onSubmit={this.HandleSubmit}>
-            <p onChange={this.HandleNamaChange}>
+            <a onChange={this.HandleNamaChange}>
               <Input
                 label="Nama"
                 placeholder="Masukkan Nama"
                 type="text"
                 name="nama_seminar"
               />
-            </p>
-            <p onChange={this.HandlePemateriChange}>
+            </a>
+            <a onChange={this.HandlePemateriChange}>
               <Input
                 label="Pemateri"
                 placeholder="Masukkan Pemateri"
                 type="text"
                 name="pemateri"
               />
-            </p>
-            <p onChange={this.HandleTanggalChange}>
+            </a>
+            <a onChange={this.HandleTanggalChange}>
               <Input label="Tanggal" type="date" name="tanggal" />
-            </p>
-            <p onChange={this.HandleDurasiChange}>
+            </a>
+            <a onChange={this.HandleDurasiChange}>
               <Input
                 label="Durasi"
                 placeholder="Masukkan Durasi (menit)"
                 type="text"
                 name="durasi_menit"
               />
-            </p>
+            </a>
             <Gap height={20} />
             <div className="btn-submit">
               <Button title="Submit" />
