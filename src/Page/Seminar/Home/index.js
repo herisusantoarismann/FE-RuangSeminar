@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
 import { Button, Gap, Loading, Modal } from "../../../Component";
 import "./style.scss";
 
@@ -75,7 +76,9 @@ class Home extends Component {
             <div className="title">
               <h2>Seminar</h2>
               <Gap width={700} />
-              <Button title="Tambah" buttonStyle="btn--primary--solid" />
+              <Link to="tambah">
+                <Button title="Tambah" buttonStyle="btn--primary--solid" />
+              </Link>
             </div>
             <div className="table">
               <table className="table table-striped table-hover">
@@ -98,19 +101,12 @@ class Home extends Component {
                       <td>{item.tanggal}</td>
                       <td>{item.durasi_menit} Menit</td>
                       <td className="btn-action">
-                        <Modal
-                          show={this.state.show}
-                          handleClose={this.hideModal}
-                        >
-                          <p>Modal</p>
-                          <p>Data</p>
-                        </Modal>
-                        <p>
+                        <Link to={`/seminars/${item._id}`}>
                           <Button
                             title="Lihat"
                             buttonStyle="btn--success--solid"
                           />
-                        </p>
+                        </Link>
                         <Gap width={20} />
                         <p onClick={() => this.deleteData(item._id)}>
                           <Button

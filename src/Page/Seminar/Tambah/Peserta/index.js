@@ -28,8 +28,8 @@ class TambahPeserta extends Component {
 
   HandleSubmit(e) {
     e.preventDefault();
-
-    fetch("http://localhost:5000/seminars/9ZZ_QypWG/peserta", {
+    let id = this.props.match.params.id;
+    fetch(`http://localhost:5000/seminars/${id}/peserta`, {
       method: "POST",
       body: JSON.stringify({
         nama: this.state.nama,
