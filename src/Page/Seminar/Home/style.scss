@@ -1,15 +1,16 @@
 .container {
+  width: 1200px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 20px 150px;
+  padding: 50px 150px;
   overflow-x: auto;
 
   .title {
-    width: 100%;
+    width: 85%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     button {
       margin: 0 50px;

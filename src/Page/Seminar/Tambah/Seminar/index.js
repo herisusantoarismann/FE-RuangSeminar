@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import { Input, Gap, Button } from "../../../../Component";
 import moment from "moment";
+import Swal from "sweetalert2";
 import "moment/locale/id";
 import "./style.scss";
 
@@ -25,14 +26,6 @@ class TambahSeminar extends Component {
     this.setState({ pemateri: e.target.value });
   };
 
-  HandleFormatDate = (e) => {
-    alert("Format Date");
-    moment.locale("id");
-    const date = moment(`${e}`, "YYYY-MM-DD").format("LL");
-    e = date;
-    return e;
-  };
-
   HandleTanggalChange = (e) => {
     this.setState({ tanggal: e.target.value });
   };
@@ -43,8 +36,6 @@ class TambahSeminar extends Component {
 
   HandleSubmit(e) {
     e.preventDefault();
-    console.log(this.state.tanggal);
-    this.HandleFormatDate(this.state.tanggal);
 
     fetch("http://localhost:5000/seminars", {
       method: "POST",
@@ -55,7 +46,21 @@ class TambahSeminar extends Component {
         durasi_menit: this.state.durasi_menit,
       }),
       headers: { "Content-Type": "application/json" },
-    });
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then(() => {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500,
+        }).then((result) => {
+          this.props.history.push("/seminars");
+        });
+      });
   }
 
   render() {
@@ -101,7 +106,7 @@ class TambahSeminar extends Component {
 
       <div className="input-seminar">
         <h2>Tambah Seminar</h2>
-        <form class="form-horizontal">
+        <form class="form-horizontal" onSubmit={this.HandleSubmit}>
           <div class="form-group">
             <div class="col-3 col-sm-12">
               <label class="form-label">Nama Seminar</label>
@@ -111,6 +116,8 @@ class TambahSeminar extends Component {
                 class="form-input"
                 type="text"
                 placeholder="Masukkan Nama Seminar"
+                name="nama_seminar"
+                onChange={this.HandleNamaChange}
               />
             </div>
           </div>
@@ -123,6 +130,8 @@ class TambahSeminar extends Component {
                 class="form-input"
                 type="text"
                 placeholder="Masukkan Pemateri"
+                name="pemateri"
+                onChange={this.HandlePemateriChange}
               />
             </div>
           </div>
@@ -133,8 +142,10 @@ class TambahSeminar extends Component {
             <div class="col-9 col-sm-12">
               <input
                 class="form-input"
-                type="text"
+                type="date"
                 placeholder="Masukkan Tanggal"
+                name="tanggal"
+                onChange={this.HandleTanggalChange}
               />
             </div>
           </div>
@@ -147,6 +158,8 @@ class TambahSeminar extends Component {
                 class="form-input"
                 type="text"
                 placeholder="Masukkan Durasi"
+                name="durasi_menit"
+                onChange={this.HandleDurasiChange}
               />
             </div>
           </div>

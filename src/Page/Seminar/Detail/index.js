@@ -184,16 +184,16 @@ class Detail extends Component {
                 </tbody>
               </table>
               <div className="btn-detail">
-                <button class="btn btn-success">Edit Seminar</button>
-                <button class="btn btn-error">Hapus Seminar</button>
+                <button className="btn btn-success">Edit Seminar</button>
+                <button className="btn btn-error">Hapus Seminar</button>
                 <Link to={`${items._id}/peserta`}>
-                  <button class="btn btn-primary">Tambah Peserta</button>
+                  <button className="btn btn-primary">Tambah Peserta</button>
                 </Link>
               </div>
             </div>
             <div className="peserta">
               <h2>Daftar Peserta</h2>
-              <table class="table table-striped table-hover">
+              <table className="table table-striped table-hover">
                 <thead>
                   <tr>
                     <th>ID</th>

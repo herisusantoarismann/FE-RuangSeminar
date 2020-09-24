@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Button, Gap, Loading, Modal } from "../../../Component";
+import moment from "moment";
+import Swal from "sweetalert2";
 import "./style.scss";
 
 class Home extends Component {
@@ -18,6 +20,14 @@ class Home extends Component {
       .then((response) => response.json())
       .then(
         (result) => {
+          result.map((hasil, idx) => {
+            moment.locale("id");
+            console.log(result[idx].tanggal);
+            const date = moment(`${result[idx].tanggal}`, "YYYY-MM-DD").format(
+              "LL"
+            );
+            result[idx].tanggal = date;
+          });
           this.setState({
             isLoaded: true,
             items: result,
@@ -34,26 +44,53 @@ class Home extends Component {
   }
 
   deleteData(id) {
-    alert(id);
-    const requestOptions = {
-      method: "DELETE",
-    };
-    fetch("http://localhost:5000/seminars/" + id, requestOptions)
-      .then((response) => {
-        return response.json();
-      })
-      .then((result) => {
-        alert("Berhasil");
-      });
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
+      },
+      buttonsStyling: false,
+    });
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const requestOptions = {
+          method: "DELETE",
+        };
+        fetch("http://localhost:5000/seminars/" + id, requestOptions)
+          .then((response) => {
+            return response.json();
+          })
+          .then(() => {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Your work has been saved",
+              showConfirmButton: false,
+              timer: 1500,
+            }).then((result) => {
+              window.location.reload(false);
+            });
+          });
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          "Cancelled",
+          "Your imaginary file is safe :)",
+          "error"
+        );
+      }
+    });
   }
-
-  showModal = () => {
-    this.setState({ show: true });
-  };
-
-  hideModal = () => {
-    this.setState({ show: false });
-  };
 
   componentDidMount() {
     this.fetchUsers();
@@ -130,7 +167,7 @@ class Home extends Component {
               </Link>
             </div>
             <div className="list-seminar">
-              <table class="table table-striped table-hover">
+              <table className="table table-striped table-hover">
                 <thead>
                   <tr>
                     <th>ID</th>
@@ -151,16 +188,13 @@ class Home extends Component {
                       <td>{item.durasi_menit} Menit</td>
                       <td className="btn-action">
                         <Link to={`/seminars/${item._id}`}>
-                          <button className="btn btn-success">
-                            <i class="icon icon-search"></i>&nbsp; Lihat
-                          </button>
+                          <button className="btn btn-success">Lihat</button>
                         </Link>
                         <button
                           className="btn btn-error"
                           onClick={() => this.deleteData(item._id)}
                         >
-                          <i class="icon icon-delete"></i>
-                          &nbsp; Hapus
+                          Hapus
                         </button>
                       </td>
                     </tr>
