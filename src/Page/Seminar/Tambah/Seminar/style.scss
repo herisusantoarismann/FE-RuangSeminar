@@ -21,9 +21,23 @@
 // }
 
 .input-seminar {
-  width: 300px;
-  margin: auto;
+  width: 500px;
+  margin: 50px auto;
   h2 {
     text-align: center;
+  }
+  input {
+    width: 300px;
+  }
+  input:focus::placeholder {
+    opacity: 0;
+  }
+  .btn-submit {
+    display: flex;
+    justify-content: center;
+    button {
+      margin-top: 20px;
+      padding: 5px;
+    }
   }
 }
