@@ -72,7 +72,7 @@ class Home extends Component {
     } else {
       return (
         <Fragment>
-          <div className="container">
+          {/* <div className="container">
             <div className="title">
               <h2>Seminar</h2>
               <Gap width={700} />
@@ -114,6 +114,54 @@ class Home extends Component {
                             buttonStyle="btn--danger--solid"
                           />
                         </p>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div> */}
+
+          <div className="container">
+            <div className="title">
+              <h2>Seminar</h2>
+              <Link to="seminars/tambah">
+                <button className="btn btn-primary">Tambah</button>
+              </Link>
+            </div>
+            <div className="list-seminar">
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nama</th>
+                    <th>Pemateri</th>
+                    <th>Tanggal</th>
+                    <th>Durasi</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {items.map((item, idx) => (
+                    <tr key={idx}>
+                      <td>{item._id}</td>
+                      <td>{item.nama_seminar}</td>
+                      <td>{item.pemateri}</td>
+                      <td>{item.tanggal}</td>
+                      <td>{item.durasi_menit} Menit</td>
+                      <td className="btn-action">
+                        <Link to={`/seminars/${item._id}`}>
+                          <button className="btn btn-success">
+                            <i class="icon icon-search"></i>&nbsp; Lihat
+                          </button>
+                        </Link>
+                        <button
+                          className="btn btn-error"
+                          onClick={() => this.deleteData(item._id)}
+                        >
+                          <i class="icon icon-delete"></i>
+                          &nbsp; Hapus
+                        </button>
                       </td>
                     </tr>
                   ))}

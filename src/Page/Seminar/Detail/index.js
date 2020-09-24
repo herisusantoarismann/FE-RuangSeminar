@@ -59,7 +59,7 @@ class Detail extends Component {
     } else {
       return (
         <Fragment>
-          <div className="container">
+          {/* <div className="container">
             <div className="detail">
               <h3>Detail Seminar</h3>
               <table className="detail-seminar">
@@ -148,7 +148,43 @@ class Detail extends Component {
           <Modal show={this.state.show} handleClose={this.hideModal}>
             <p>Modal</p>
             <p>Data</p>
-          </Modal>
+          </Modal> */}
+
+          <div className="container">
+            <div className="detail-seminar">
+              <h2>Detail Seminar</h2>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>ID</td>
+                    <td>:</td>
+                    <td>&nbsp;{items._id}</td>
+                  </tr>
+                  <tr>
+                    <td>Nama Seminar &nbsp;</td>
+                    <td>:</td>
+                    <td>&nbsp;{items.nama_seminar}</td>
+                  </tr>
+                  <tr>
+                    <td>Pemateri</td>
+                    <td>:</td>
+                    <td>&nbsp;{items.pemateri}</td>
+                  </tr>
+                  <tr>
+                    <td>Tanggal</td>
+                    <td>:</td>
+                    <td>&nbsp;{items.tanggal}</td>
+                  </tr>
+                  <tr>
+                    <td>Durasi</td>
+                    <td>:</td>
+                    <td>&nbsp;{items.durasi_menit}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="peserta"></div>
+          </div>
         </Fragment>
       );
     }
