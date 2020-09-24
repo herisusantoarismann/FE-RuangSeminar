@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 // import { Button, Gap, Input } from "../../../../Component";
+import Swal from "sweetalert2";
 import "./style.scss";
 
 class TambahPeserta extends Component {
@@ -12,6 +13,7 @@ class TambahPeserta extends Component {
     };
 
     this.HandleSubmit = this.HandleSubmit.bind(this);
+    this.goBack = this.goBack.bind(this);
   }
 
   HandleNamaChange = (e) => {
@@ -26,6 +28,10 @@ class TambahPeserta extends Component {
     this.setState({ nomor: e.target.value });
   };
 
+  goBack() {
+    this.props.history.goBack();
+  }
+
   HandleSubmit(e) {
     e.preventDefault();
     let id = this.props.match.params.id;
@@ -37,6 +43,16 @@ class TambahPeserta extends Component {
         nomor: this.state.nomor,
       }),
       headers: { "Content-Type": "application/json" },
+    }).then(() => {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+      }).then((result) => {
+        this.goBack();
+      });
     });
   }
 
@@ -80,40 +96,46 @@ class TambahPeserta extends Component {
 
       <div className="input-peserta">
         <h2>Tambah Peserta</h2>
-        <form class="form-horizontal">
-          <div class="form-group">
-            <div class="col-3 col-sm-12">
-              <label class="form-label">Nama</label>
+        <form className="form-horizontal" onSubmit={this.HandleSubmit}>
+          <div className="form-group">
+            <div className="col-3 col-sm-12">
+              <label className="form-label">Nama</label>
             </div>
-            <div class="col-9 col-sm-12">
+            <div className="col-9 col-sm-12">
               <input
-                class="form-input"
+                className="form-input"
                 type="text"
                 placeholder="Masukkan Nama"
+                name="nama"
+                onChange={this.HandleNamaChange}
               />
             </div>
           </div>
-          <div class="form-group">
-            <div class="col-3 col-sm-12">
-              <label class="form-label">Email</label>
+          <div className="form-group">
+            <div className="col-3 col-sm-12">
+              <label className="form-label">Email</label>
             </div>
-            <div class="col-9 col-sm-12">
+            <div className="col-9 col-sm-12">
               <input
-                class="form-input"
+                className="form-input"
                 type="text"
                 placeholder="Masukkan Email"
+                name="email"
+                onChange={this.HandleEmailChange}
               />
             </div>
           </div>
-          <div class="form-group">
-            <div class="col-3 col-sm-12">
-              <label class="form-label">Nomor</label>
+          <div className="form-group">
+            <div className="col-3 col-sm-12">
+              <label className="form-label">Nomor</label>
             </div>
-            <div class="col-9 col-sm-12">
+            <div className="col-9 col-sm-12">
               <input
-                class="form-input"
+                className="form-input"
                 type="text"
                 placeholder="Masukkan Nomor Telepon"
+                name="Nomor"
+                onChange={this.HandleNomorChange}
               />
             </div>
           </div>

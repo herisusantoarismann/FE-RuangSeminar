@@ -1,14 +1,11 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-import { Button, Gap, Loading, Modal } from "../../../Component";
+import Loading from "../../../Component/Loading/index";
 import moment from "moment";
 import Swal from "sweetalert2";
 import "./style.scss";
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-  }
   state = {
     isLoading: true,
     items: [],
@@ -20,9 +17,8 @@ class Home extends Component {
       .then((response) => response.json())
       .then(
         (result) => {
-          result.map((hasil, idx) => {
+          result.forEach((hasil, idx) => {
             moment.locale("id");
-            console.log(result[idx].tanggal);
             const date = moment(`${result[idx].tanggal}`, "YYYY-MM-DD").format(
               "LL"
             );
@@ -162,7 +158,7 @@ class Home extends Component {
           <div className="container">
             <div className="title">
               <h2>Seminar</h2>
-              <Link to="seminars/tambah">
+              <Link to="/seminars/tambah">
                 <button className="btn btn-primary">Tambah</button>
               </Link>
             </div>

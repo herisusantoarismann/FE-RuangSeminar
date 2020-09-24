@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 // import { Input, Gap, Button } from "../../../../Component";
-import moment from "moment";
 import Swal from "sweetalert2";
 import "moment/locale/id";
 import "./style.scss";

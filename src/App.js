@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Home, Detail, TambahSeminar, TambahPeserta } from "./Page";
+import {
+  Home,
+  Detail,
+  TambahSeminar,
+  TambahPeserta,
+  EditSeminar,
+} from "./Page";
 
 class App extends Component {
   render() {
@@ -10,6 +16,7 @@ class App extends Component {
           <Route path="/seminars" exact component={Home} />
           <Route path="/seminars/tambah" component={TambahSeminar} />
           <Route path="/seminars/:id" exact component={Detail} />
+          <Route path="/seminars/:id/edit" exact component={EditSeminar} />
           <Route path="/seminars/:id/peserta" component={TambahPeserta} />
         </Switch>
       </Router>

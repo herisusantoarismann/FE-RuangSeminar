@@ -2,16 +2,19 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 // import { Button, Gap, Loading, Modal } from "../../../Component";
 import Loading from "../../../Component/Loading/index";
+import moment from "moment";
+import Swal from "sweetalert2";
 import "./style.scss";
 
 class Detail extends Component {
-  constructor(props) {
-    super(props);
-  }
   state = {
     isLoading: true,
     items: [],
     error: null,
+    active: "",
+    nama: "",
+    email: "",
+    nomor: "",
   };
 
   fetchUsers() {
@@ -20,6 +23,9 @@ class Detail extends Component {
       .then((response) => response.json())
       .then(
         (result) => {
+          moment.locale("id");
+          const date = moment(`${result.tanggal}`, "YYYY-MM-DD").format("LL");
+          result.tanggal = date;
           this.setState({
             isLoaded: true,
             items: result,
@@ -35,12 +41,125 @@ class Detail extends Component {
       );
   }
 
-  showModal = () => {
-    this.setState({ show: true });
-  };
+  deleteSeminar(id) {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
+      },
+      buttonsStyling: false,
+    });
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const requestOptions = {
+          method: "DELETE",
+        };
+        fetch("http://localhost:5000/seminars/" + id, requestOptions)
+          .then((response) => {
+            return response.json();
+          })
+          .then(() => {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Your work has been saved",
+              showConfirmButton: false,
+              timer: 1500,
+            }).then((result) => {
+              this.props.history.push("/seminars");
+            });
+          });
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          "Cancelled",
+          "Your imaginary file is safe :)",
+          "error"
+        );
+      }
+    });
+  }
 
-  hideModal = () => {
-    this.setState({ show: false });
+  deletePeserta(idSeminar, idPeserta) {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
+      },
+      buttonsStyling: false,
+    });
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const requestOptions = {
+          method: "DELETE",
+        };
+        fetch(
+          "http://localhost:5000/seminars/" +
+            idSeminar +
+            "/peserta/" +
+            idPeserta,
+          requestOptions
+        )
+          .then((response) => {
+            return response.json();
+          })
+          .then(() => {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Your work has been saved",
+              showConfirmButton: false,
+              timer: 1500,
+            }).then((result) => {
+              window.location.reload();
+            });
+          });
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          "Cancelled",
+          "Your imaginary file is safe :)",
+          "error"
+        );
+      }
+    });
+  }
+
+  ShowModal(idDetail) {
+    console.log(idDetail);
+    console.log(this.state.items.peserta[idDetail]);
+    this.setState({
+      active: "active",
+      nama: this.state.items.peserta[idDetail].nama,
+      email: this.state.items.peserta[idDetail].email,
+      nomor: this.state.items.peserta[idDetail].nomor,
+    });
+  }
+
+  HideModal = () => {
+    this.setState({
+      active: "",
+    });
   };
 
   componentDidMount() {
@@ -152,7 +271,7 @@ class Detail extends Component {
           </Modal> */}
 
           <div className="container">
-            <div className="detail-seminar">
+            <div className="detail-seminar" id="detail-seminar">
               <h2>Detail Seminar</h2>
               <table>
                 <tbody>
@@ -184,8 +303,15 @@ class Detail extends Component {
                 </tbody>
               </table>
               <div className="btn-detail">
-                <button className="btn btn-success">Edit Seminar</button>
-                <button className="btn btn-error">Hapus Seminar</button>
+                <Link to={`${items._id}/edit`}>
+                  <button className="btn btn-success">Edit Seminar</button>
+                </Link>
+                <button
+                  className="btn btn-error"
+                  onClick={() => this.deleteSeminar(items._id)}
+                >
+                  Hapus Seminar
+                </button>
                 <Link to={`${items._id}/peserta`}>
                   <button className="btn btn-primary">Tambah Peserta</button>
                 </Link>
@@ -211,13 +337,89 @@ class Detail extends Component {
                       <td>{item.email}</td>
                       <td>{item.nomor}</td>
                       <td className="btn-action">
-                        <button className="btn btn-success">Lihat</button>
-                        <button className="btn btn-error">Hapus</button>
+                        <button
+                          className="btn btn-success"
+                          onClick={() => {
+                            this.ShowModal(idx);
+                          }}
+                        >
+                          Lihat
+                        </button>
+                        <button
+                          className="btn btn-error"
+                          onClick={() => {
+                            this.deletePeserta(items._id, item._id);
+                          }}
+                        >
+                          Hapus
+                        </button>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
+            </div>
+          </div>
+          <div className={`modal ${this.state.active}`} id="modal-id">
+            <button
+              href="#detail-seminar"
+              className="modal-overlay"
+              aria-label="Close"
+            ></button>
+            <div className="modal-container">
+              <div className="modal-header">
+                <button
+                  href="#"
+                  className="btn btn-clear float-right"
+                  aria-label="Close"
+                  onClick={this.HideModal}
+                ></button>
+                <div className="modal-title h5">Data Peserta</div>
+              </div>
+              <div className="modal-body">
+                <div className="content">
+                  <div className="form-group">
+                    <div className="col-3 col-sm-12">
+                      <label className="form-label">Nama</label>
+                    </div>
+                    <div className="col-9 col-sm-12">
+                      <input
+                        className="form-input"
+                        type="text"
+                        defaultValue={this.state.nama}
+                        name="nama"
+                      />
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <div className="col-3 col-sm-12">
+                      <label className="form-label">Email</label>
+                    </div>
+                    <div className="col-9 col-sm-12">
+                      <input
+                        className="form-input"
+                        type="text"
+                        defaultValue={this.state.email}
+                        name="email"
+                      />
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <div className="col-3 col-sm-12">
+                      <label className="form-label">Nomor</label>
+                    </div>
+                    <div className="col-9 col-sm-12">
+                      <input
+                        className="form-input"
+                        type="text"
+                        defaultValue={this.state.nomor}
+                        name="Nomor"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="modal-footer"></div>
             </div>
           </div>
         </Fragment>
