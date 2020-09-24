@@ -16,16 +16,10 @@ class TambahPeserta extends Component {
     this.goBack = this.goBack.bind(this);
   }
 
-  HandleNamaChange = (e) => {
-    this.setState({ nama: e.target.value });
-  };
-
-  HandleEmailChange = (e) => {
-    this.setState({ email: e.target.value });
-  };
-
-  HandleNomorChange = (e) => {
-    this.setState({ nomor: e.target.value });
+  HandleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({ [name]: value });
   };
 
   goBack() {
@@ -47,7 +41,7 @@ class TambahPeserta extends Component {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: "Your work has been saved",
+        title: "Data berhasil ditambah",
         showConfirmButton: false,
         timer: 1500,
       }).then((result) => {
@@ -107,7 +101,7 @@ class TambahPeserta extends Component {
                 type="text"
                 placeholder="Masukkan Nama"
                 name="nama"
-                onChange={this.HandleNamaChange}
+                onChange={this.HandleChange}
               />
             </div>
           </div>
@@ -121,7 +115,7 @@ class TambahPeserta extends Component {
                 type="text"
                 placeholder="Masukkan Email"
                 name="email"
-                onChange={this.HandleEmailChange}
+                onChange={this.HandleChange}
               />
             </div>
           </div>
@@ -134,8 +128,8 @@ class TambahPeserta extends Component {
                 className="form-input"
                 type="text"
                 placeholder="Masukkan Nomor Telepon"
-                name="Nomor"
-                onChange={this.HandleNomorChange}
+                name="nomor"
+                onChange={this.HandleChange}
               />
             </div>
           </div>

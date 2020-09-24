@@ -12,7 +12,7 @@ class Home extends Component {
     error: null,
   };
 
-  fetchUsers() {
+  fetchData() {
     fetch("http://localhost:5000/seminars")
       .then((response) => response.json())
       .then(
@@ -48,13 +48,13 @@ class Home extends Component {
       buttonsStyling: false,
     });
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Apakah kamu yakin?",
+      text: "Kamu tidak bisa mengembalikan data ini!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Delete",
     }).then((result) => {
       if (result.isConfirmed) {
         const requestOptions = {
@@ -68,7 +68,7 @@ class Home extends Component {
             Swal.fire({
               position: "center",
               icon: "success",
-              title: "Your work has been saved",
+              title: "Data berhasil dihapus",
               showConfirmButton: false,
               timer: 1500,
             }).then((result) => {
@@ -79,17 +79,13 @@ class Home extends Component {
         /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel
       ) {
-        swalWithBootstrapButtons.fire(
-          "Cancelled",
-          "Your imaginary file is safe :)",
-          "error"
-        );
+        swalWithBootstrapButtons.fire("Batal", "Data batal dihapus", "error");
       }
     });
   }
 
   componentDidMount() {
-    this.fetchUsers();
+    this.fetchData();
   }
 
   render() {

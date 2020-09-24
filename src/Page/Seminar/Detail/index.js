@@ -17,7 +17,7 @@ class Detail extends Component {
     nomor: "",
   };
 
-  fetchUsers() {
+  fetchData() {
     let id = this.props.match.params.id;
     fetch(`http://localhost:5000/seminars/${id}`)
       .then((response) => response.json())
@@ -50,13 +50,13 @@ class Detail extends Component {
       buttonsStyling: false,
     });
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Apakah kamu yakin?",
+      text: "Kamu tidak bisa mengembalikan data ini!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Delete",
     }).then((result) => {
       if (result.isConfirmed) {
         const requestOptions = {
@@ -70,22 +70,15 @@ class Detail extends Component {
             Swal.fire({
               position: "center",
               icon: "success",
-              title: "Your work has been saved",
+              title: "Data berhasil dihapus",
               showConfirmButton: false,
               timer: 1500,
             }).then((result) => {
               this.props.history.push("/seminars");
             });
           });
-      } else if (
-        /* Read more about handling dismissals below */
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire(
-          "Cancelled",
-          "Your imaginary file is safe :)",
-          "error"
-        );
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        swalWithBootstrapButtons.fire("Batal", "Data batal dihapus", "error");
       }
     });
   }
@@ -99,13 +92,13 @@ class Detail extends Component {
       buttonsStyling: false,
     });
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Apakah kamu yakin?",
+      text: "Kamu tidak bisa mengembalikan data ini!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Delete",
     }).then((result) => {
       if (result.isConfirmed) {
         const requestOptions = {
@@ -125,22 +118,15 @@ class Detail extends Component {
             Swal.fire({
               position: "center",
               icon: "success",
-              title: "Your work has been saved",
+              title: "Data berhasil dihapus",
               showConfirmButton: false,
               timer: 1500,
             }).then((result) => {
               window.location.reload();
             });
           });
-      } else if (
-        /* Read more about handling dismissals below */
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire(
-          "Cancelled",
-          "Your imaginary file is safe :)",
-          "error"
-        );
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        swalWithBootstrapButtons.fire("Batal", "Data batal dihapus", "error");
       }
     });
   }
@@ -163,7 +149,7 @@ class Detail extends Component {
   };
 
   componentDidMount() {
-    this.fetchUsers();
+    this.fetchData();
   }
 
   render() {

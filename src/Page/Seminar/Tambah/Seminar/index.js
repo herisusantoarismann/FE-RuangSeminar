@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 // import { Input, Gap, Button } from "../../../../Component";
 import Swal from "sweetalert2";
+import DatePicker, { registerLocale } from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import es from "date-fns/locale/es";
 import "moment/locale/id";
 import "./style.scss";
+registerLocale("es", es);
 
 class TambahSeminar extends Component {
   constructor() {
@@ -17,25 +21,21 @@ class TambahSeminar extends Component {
     this.HandleSubmit = this.HandleSubmit.bind(this);
   }
 
-  HandleNamaChange = (e) => {
-    this.setState({ nama_seminar: e.target.value });
+  HandleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({ [name]: value });
   };
 
-  HandlePemateriChange = (e) => {
-    this.setState({ pemateri: e.target.value });
-  };
-
-  HandleTanggalChange = (e) => {
-    this.setState({ tanggal: e.target.value });
-  };
-
-  HandleDurasiChange = (e) => {
-    this.setState({ durasi_menit: e.target.value });
+  HandleTanggalChange = (date) => {
+    this.setState({ tanggal: date });
   };
 
   HandleSubmit(e) {
     e.preventDefault();
 
+    const date = this.state.tanggal;
+    date.setDate(date.getDate() + 1);
     fetch("http://localhost:5000/seminars", {
       method: "POST",
       body: JSON.stringify({
@@ -53,7 +53,7 @@ class TambahSeminar extends Component {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Your work has been saved",
+          title: "Data berhasil ditambah",
           showConfirmButton: false,
           timer: 1500,
         }).then((result) => {
@@ -102,63 +102,63 @@ class TambahSeminar extends Component {
       //     </form>
       //   </div>
       // </div>
-
       <div className="input-seminar">
         <h2>Tambah Seminar</h2>
-        <form class="form-horizontal" onSubmit={this.HandleSubmit}>
-          <div class="form-group">
-            <div class="col-3 col-sm-12">
-              <label class="form-label">Nama Seminar</label>
+        <form className="form-horizontal" onSubmit={this.HandleSubmit}>
+          <div className="form-group">
+            <div className="col-3 col-sm-12">
+              <label className="form-label">Nama Seminar</label>
             </div>
-            <div class="col-9 col-sm-12">
+            <div className="col-9 col-sm-12">
               <input
-                class="form-input"
+                className="form-input"
                 type="text"
                 placeholder="Masukkan Nama Seminar"
                 name="nama_seminar"
-                onChange={this.HandleNamaChange}
+                onChange={this.HandleChange}
               />
             </div>
           </div>
-          <div class="form-group">
-            <div class="col-3 col-sm-12">
-              <label class="form-label">Pemateri</label>
+          <div className="form-group">
+            <div className="col-3 col-sm-12">
+              <label className="form-label">Pemateri</label>
             </div>
-            <div class="col-9 col-sm-12">
+            <div className="col-9 col-sm-12">
               <input
-                class="form-input"
+                className="form-input"
                 type="text"
                 placeholder="Masukkan Pemateri"
                 name="pemateri"
-                onChange={this.HandlePemateriChange}
+                onChange={this.HandleChange}
               />
             </div>
           </div>
-          <div class="form-group">
-            <div class="col-3 col-sm-12">
-              <label class="form-label">Tanggal</label>
+          <div className="form-group">
+            <div className="col-3 col-sm-12">
+              <label className="form-label">Tanggal</label>
             </div>
-            <div class="col-9 col-sm-12">
-              <input
-                class="form-input"
-                type="date"
-                placeholder="Masukkan Tanggal"
-                name="tanggal"
+            <div className="col-9 col-sm-12">
+              <DatePicker
+                className="form-input"
+                selected={this.state.tanggal}
                 onChange={this.HandleTanggalChange}
+                name="tanggal"
+                dateFormat="MM/dd/yyyy"
+                locale="es"
               />
             </div>
           </div>
-          <div class="form-group">
-            <div class="col-3 col-sm-12">
-              <label class="form-label">Durasi (menit)</label>
+          <div className="form-group">
+            <div className="col-3 col-sm-12">
+              <label className="form-label">Durasi (menit)</label>
             </div>
-            <div class="col-9 col-sm-12">
+            <div className="col-9 col-sm-12">
               <input
-                class="form-input"
+                className="form-input"
                 type="text"
                 placeholder="Masukkan Durasi"
                 name="durasi_menit"
-                onChange={this.HandleDurasiChange}
+                onChange={this.HandleChange}
               />
             </div>
           </div>
